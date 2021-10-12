@@ -1459,21 +1459,30 @@ defmodule Explorer.Series do
     type
   end
 
-  defp type(item) when is_integer(item), do: :integer
-  defp type(item) when is_float(item), do: :float
-  defp type(item) when is_boolean(item), do: :boolean
-  defp type(item) when is_binary(item), do: :string
-  defp type(%Date{} = _item), do: :date
-  defp type(%NaiveDateTime{} = _item), do: :datetime
-  defp type(item) when is_nil(item), do: nil
-  defp type(item), do: raise("Unsupported datatype: #{inspect(item)}")
+  defp type(item, type) when K.and(is_integer(item), type == :float), do: :float
+  defp type(item, _type) when is_integer(item), do: :integer
+  defp type(item, type) when K.and(is_float(item), type == :integer), do: :float
+  defp type(item, _type) when is_float(item), do: :float
+  defp type(item, _type) when is_boolean(item), do: :boolean
+  defp type(item, _type) when is_binary(item), do: :string
+  defp type(%Date{} = _item, _type), do: :date
+  defp type(%NaiveDateTime{} = _item, _type), do: :datetime
+  defp type(item, _type) when is_nil(item), do: nil
+  defp type(item, _type), do: raise("Unsupported datatype: #{inspect(item)}")
 
   defp check_types_reducer(item, {_prev, type, _types_match?}) do
-    new_type = type(item) || type
+    new_type = type(item, type) || type
 
-    if K.and(new_type != type, !is_nil(type)),
-      do: {:halt, {item, type, false}},
-      else: {:cont, {item, new_type, true}}
+    cond do
+      K.and(new_type == :integer, type == :float) -> {:cont, {item, new_type, true}}
+      K.and(new_type == :float, type == :integer) -> {:cont, {item, new_type, true}}
+      K.and(new_type != type, !is_nil(type)) -> {:halt, {item, type, false}}
+      true -> {:cont, {item, new_type, true}}
+    end
+
+    #   if K.and(new_type != type, !is_nil(type)),
+    #     do: {:halt, {item, type, false}},
+    #     else: {:cont, {item, new_type, true}}
   end
 
   defp dtype_error(function, dtype, valid_dtypes),
