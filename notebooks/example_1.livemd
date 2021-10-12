@@ -1,0 +1,13 @@
+# Series.check_types Example
+
+## Example 1
+
+```elixir
+Mix.install([
+  {:explorer, ">= 0.0.0", github: "dgreiss/explorer-series-check-types"}
+])
+```
+
+```elixir
+Explorer.Series.from_list([1, 2.0])
+```
