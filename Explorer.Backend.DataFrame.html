@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.25.0">
+    <meta name="project" content="Explorer v0.1.0-dev">
+
+    <title>Explorer.Backend.DataFrame — Explorer v0.1.0-dev</title>
+    <link rel="stylesheet" href="dist/elixir-a172fe91e725dcb259e2.css" />
+
+    <script src="dist/sidebar_items-7de0a5646d.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f27ff079945e43879c46.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="Explorer.html" class="sidebar-projectName">
+Explorer
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.0-dev
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+Explorer.Backend.DataFrame <small>behaviour</small> <small class="app-vsn">(Explorer v0.1.0-dev)</small>
+
+          <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>The behaviour for DataFrame backends.</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:colname/0">colname()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:df/0">df()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:result/1">result(t)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:series/0">series()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-callbacks summary">
+    <h2>
+      <a href="#callbacks">Callbacks</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:arrange/2">arrange(df, columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:distinct/3">distinct(df, columns, keep_all?)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:drop_nil/2">drop_nil(df, columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:dtypes/1">dtypes(df)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:dummies/2">dummies(df, columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:filter/2">filter(df, mask)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:from_map/1">from_map(map)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:group_by/2">group_by(df, columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:head/2">head(df, rows)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:join/4">join(left, right, how, on)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:mutate/2">mutate(df, with_columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:n_cols/1">n_cols(df)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:n_rows/1">n_rows(df)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:names/1">names(df)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:pivot_longer/5">pivot_longer(df, id_cols, value_cols, names_to, values_to)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:pivot_wider/5">pivot_wider(df, id_cols, names_from, values_from, names_prefix)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:pull/2">pull(df, column)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:read_csv/10">read_csv(filename, names, dtypes, delimiter, null_character, skip_rows, header?, encoding, max_rows, with_columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:rename/2">rename(df, list)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:sample/4">sample(df, n, with_replacement?, seed)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:select/3">select(df, columns, arg3)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:shape/1">shape(df)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:slice/3">slice(df, offset, length)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:summarise/2">summarise(df, aggregations)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:tail/2">tail(df, rows)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:take/2">take(df, indices)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:to_binary/3">to_binary(df, header?, delimiter)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:to_map/2">to_map(df, convert_series?)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:ungroup/2">ungroup(df, columns)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:write_csv/4">write_csv(df, filename, header?, delimiter)</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:colname/0">
+
+  <div class="detail-header">
+    <a href="#t:colname/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">colname()</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L11" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>colname() :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:df/0">
+
+  <div class="detail-header">
+    <a href="#t:df/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">df()</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L8" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>df() :: <a href="Explorer.DataFrame.html#t:t/0">Explorer.DataFrame.t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:result/1">
+
+  <div class="detail-header">
+    <a href="#t:result/1" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">result(t)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L9" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>result(t) :: {:ok, t} | {:error, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:series/0">
+
+  <div class="detail-header">
+    <a href="#t:series/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">series()</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L10" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>series() :: <a href="Explorer.Series.html#t:t/0">Explorer.Series.t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L6" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>t() :: %{__struct__: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="callbacks" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#callbacks">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Callbacks
+          </h1>
+          <div class="callbacks-list">
+<section class="detail" id="c:arrange/2">
+
+  <div class="detail-header">
+    <a href="#c:arrange/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">arrange(df, columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L51" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>arrange(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>() | {:asc | :desc, <a href="#t:colname/0">colname</a>()}]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:distinct/3">
+
+  <div class="detail-header">
+    <a href="#c:distinct/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">distinct(df, columns, keep_all?)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L52" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>distinct(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>()], keep_all? :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:drop_nil/2">
+
+  <div class="detail-header">
+    <a href="#c:drop_nil/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">drop_nil(df, columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L59" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>drop_nil(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>()]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:dtypes/1">
+
+  <div class="detail-header">
+    <a href="#c:dtypes/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">dtypes(df)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L39" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>dtypes(<a href="#t:df/0">df</a>()) :: [<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:dummies/2">
+
+  <div class="detail-header">
+    <a href="#c:dummies/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">dummies(df, columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L54" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>dummies(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>()]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:filter/2">
+
+  <div class="detail-header">
+    <a href="#c:filter/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">filter(df, mask)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L49" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>filter(<a href="#t:df/0">df</a>(), mask :: <a href="#t:series/0">series</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:from_map/1">
+
+  <div class="detail-header">
+    <a href="#c:from_map/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">from_map(map)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L32" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>from_map(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:group_by/2">
+
+  <div class="detail-header">
+    <a href="#c:group_by/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">group_by(df, columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L88" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>group_by(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>()]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:head/2">
+
+  <div class="detail-header">
+    <a href="#c:head/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">head(df, rows)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L46" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>head(<a href="#t:df/0">df</a>(), rows :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:join/4">
+
+  <div class="detail-header">
+    <a href="#c:join/4" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">join(left, right, how, on)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L84" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>join(
+  left :: <a href="#t:df/0">df</a>(),
+  right :: <a href="#t:df/0">df</a>(),
+  how :: :left | :inner | :outer | :right | :cross,
+  on :: [<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>() | {<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}]
+) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:mutate/2">
+
+  <div class="detail-header">
+    <a href="#c:mutate/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">mutate(df, with_columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L50" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>mutate(<a href="#t:df/0">df</a>(), with_columns :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:n_cols/1">
+
+  <div class="detail-header">
+    <a href="#c:n_cols/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">n_cols(df)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L42" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>n_cols(<a href="#t:df/0">df</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:n_rows/1">
+
+  <div class="detail-header">
+    <a href="#c:n_rows/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">n_rows(df)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L41" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>n_rows(<a href="#t:df/0">df</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:names/1">
+
+  <div class="detail-header">
+    <a href="#c:names/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">names(df)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L38" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>names(<a href="#t:df/0">df</a>()) :: [<a href="#t:colname/0">colname</a>()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:pivot_longer/5">
+
+  <div class="detail-header">
+    <a href="#c:pivot_longer/5" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">pivot_longer(df, id_cols, value_cols, names_to, values_to)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L74" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>pivot_longer(
+  <a href="#t:df/0">df</a>(),
+  id_cols :: [<a href="#t:colname/0">colname</a>()],
+  value_cols :: [<a href="#t:colname/0">colname</a>()],
+  names_to :: <a href="#t:colname/0">colname</a>(),
+  values_to :: <a href="#t:colname/0">colname</a>()
+) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:pivot_wider/5">
+
+  <div class="detail-header">
+    <a href="#c:pivot_wider/5" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">pivot_wider(df, id_cols, names_from, values_from, names_prefix)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L67" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>pivot_wider(
+  <a href="#t:df/0">df</a>(),
+  id_cols :: [<a href="#t:colname/0">colname</a>()],
+  names_from :: [<a href="#t:colname/0">colname</a>()],
+  values_from :: [<a href="#t:colname/0">colname</a>()],
+  names_prefix :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:pull/2">
+
+  <div class="detail-header">
+    <a href="#c:pull/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">pull(df, column)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L56" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>pull(<a href="#t:df/0">df</a>(), column :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="#t:series/0">series</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:read_csv/10">
+
+  <div class="detail-header">
+    <a href="#c:read_csv/10" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">read_csv(filename, names, dtypes, delimiter, null_character, skip_rows, header?, encoding, max_rows, with_columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L26" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>read_csv(
+  filename :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  names :: [<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()] | nil,
+  dtypes :: [{<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()}] | nil,
+  delimiter :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  null_character :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  skip_rows :: Integer.t(),
+  header? :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  encoding :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  max_rows :: Integer.t() | Inf,
+  with_columns :: [<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()] | nil
+) :: <a href="#t:result/1">result</a>(<a href="#t:df/0">df</a>())</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:rename/2">
+
+  <div class="detail-header">
+    <a href="#c:rename/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">rename(df, list)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L53" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>rename(<a href="#t:df/0">df</a>(), [<a href="#t:colname/0">colname</a>()]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:sample/4">
+
+  <div class="detail-header">
+    <a href="#c:sample/4" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">sample(df, n, with_replacement?, seed)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L55" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>sample(<a href="#t:df/0">df</a>(), n :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(), with_replacement? :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(), seed :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) ::
+  <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:select/3">
+
+  <div class="detail-header">
+    <a href="#c:select/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">select(df, columns, arg3)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L48" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>select(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>()], :keep | :drop) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:shape/1">
+
+  <div class="detail-header">
+    <a href="#c:shape/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">shape(df)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L40" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>shape(<a href="#t:df/0">df</a>()) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:slice/3">
+
+  <div class="detail-header">
+    <a href="#c:slice/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">slice(df, offset, length)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L57" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>slice(<a href="#t:df/0">df</a>(), offset :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(), length :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:summarise/2">
+
+  <div class="detail-header">
+    <a href="#c:summarise/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">summarise(df, aggregations)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L90" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>summarise(<a href="#t:df/0">df</a>(), aggregations :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:tail/2">
+
+  <div class="detail-header">
+    <a href="#c:tail/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">tail(df, rows)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L47" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>tail(<a href="#t:df/0">df</a>(), rows :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:take/2">
+
+  <div class="detail-header">
+    <a href="#c:take/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">take(df, indices)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L58" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>take(<a href="#t:df/0">df</a>(), indices :: [<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:to_binary/3">
+
+  <div class="detail-header">
+    <a href="#c:to_binary/3" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">to_binary(df, header?, delimiter)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L34" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>to_binary(<a href="#t:df/0">df</a>(), header? :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(), delimiter :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:to_map/2">
+
+  <div class="detail-header">
+    <a href="#c:to_map/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">to_map(df, convert_series?)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L33" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>to_map(<a href="#t:df/0">df</a>(), convert_series? :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:ungroup/2">
+
+  <div class="detail-header">
+    <a href="#c:ungroup/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">ungroup(df, columns)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L89" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>ungroup(<a href="#t:df/0">df</a>(), columns :: [<a href="#t:colname/0">colname</a>()]) :: <a href="#t:df/0">df</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="c:write_csv/4">
+
+  <div class="detail-header">
+    <a href="#c:write_csv/4" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">write_csv(df, filename, header?, delimiter)</h1>
+
+      <a href="https://github.com/amplifiedai/explorer/blob/v0.1.0-dev/lib/explorer/backend/data_frame.ex#L27" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>write_csv(
+  <a href="#t:df/0">df</a>(),
+  filename :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(),
+  header? :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  delimiter :: <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()
+) :: <a href="#t:result/1">result</a>(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>())</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.25.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
