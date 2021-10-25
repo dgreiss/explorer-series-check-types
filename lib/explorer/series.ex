@@ -109,6 +109,7 @@ defmodule Explorer.Series do
   def from_list(list, opts \\ []) do
     backend = backend_from_options!(opts)
     type = check_types(list)
+    {list, type} = cast_numerics(list, type)
     backend.from_list(list, type)
   end
 
@@ -1459,9 +1460,13 @@ defmodule Explorer.Series do
     type
   end
 
-  defp type(item, type) when K.and(is_integer(item), type == :float), do: :float
+  defp type(item, type) when K.and(is_integer(item), type == :float), do: :numeric
+  defp type(item, type) when K.and(is_float(item), type == :integer), do: :numeric
+
+  defp type(item, type) when K.and(type == :numeric, K.or(is_integer(item), is_float(item))),
+    do: :numeric
+
   defp type(item, _type) when is_integer(item), do: :integer
-  defp type(item, type) when K.and(is_float(item), type == :integer), do: :float
   defp type(item, _type) when is_float(item), do: :float
   defp type(item, _type) when is_boolean(item), do: :boolean
   defp type(item, _type) when is_binary(item), do: :string
@@ -1474,8 +1479,8 @@ defmodule Explorer.Series do
     new_type = type(item, type) || type
 
     cond do
-      K.and(new_type == :integer, type == :float) -> {:cont, {item, new_type, true}}
-      K.and(new_type == :float, type == :integer) -> {:cont, {item, new_type, true}}
+      K.and(new_type == :numeric, type in [:float, :integer]) -> {:cont, {item, new_type, true}}
+      # K.and(new_type == :float, type == :integer) -> {:cont, {item, new_type, true}}
       K.and(new_type != type, !is_nil(type)) -> {:halt, {item, type, false}}
       true -> {:cont, {item, new_type, true}}
     end
@@ -1484,6 +1489,20 @@ defmodule Explorer.Series do
     #     do: {:halt, {item, type, false}},
     #     else: {:cont, {item, new_type, true}}
   end
+
+  defp cast_numerics(list, type) when type == :numeric do
+    data =
+      Enum.map(list, fn item ->
+        case item do
+          nil -> nil
+          _ -> item / 1
+        end
+      end)
+
+    {data, :float}
+  end
+
+  defp cast_numerics(list, type), do: {list, type}
 
   defp dtype_error(function, dtype, valid_dtypes),
     do:
